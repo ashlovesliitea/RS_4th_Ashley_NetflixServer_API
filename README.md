@@ -3,7 +3,6 @@
 - 해당 프로젝트는 Rising Camp 4기를 수강하면서 개발하였고, Netflix Server단의 주요 API를 구현하였습니다.
 
 ## 1. 기술 스택
-----------------
 1) Backend : Spring Boot
 2) Database : Amazon RDS MySQL Database 
 3) Server 
@@ -13,7 +12,6 @@
 
 
 ## 2. 프로젝트 ERD 명세서
-----------------------
 <img src='http://drive.google.com/uc?export=view&id=1V_fHAHFACenuV5mOmJrj2wORf3jCm-u9' /><br>
 > 1) URL : https://aquerytool.com/aquerymain/index/?rurl=bbfd7479-446e-4111-976c-63836abfc20d&
 > 2) Password : 78ys1d
