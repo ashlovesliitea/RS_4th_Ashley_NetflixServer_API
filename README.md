@@ -1,13 +1,12 @@
 # RS_4th_Ashley_NeflixServer_API
----------------------------------
-- 해당 프로젝트는 Rising Camp 4기를 수강하면서 개발하였고, Netflix Server단의 주요 API를 구현하였습니다.
+- 해당 프로젝트를 통해 Netflix Server단의 주요 API를 구현하였습니다.
 
 ## 1. 기술 스택
 1) Backend : Spring Boot
 2) Database : Amazon RDS MySQL Database 
 3) Server 
     1) Deploy : AWS EC2 Linux instance
-    2) Domain : 가비아 도메인
+    2) Domain : 가비아 
     3) Engine : Nginx
 
 
