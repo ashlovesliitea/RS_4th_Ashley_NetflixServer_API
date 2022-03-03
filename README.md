@@ -15,8 +15,8 @@
 ## 2. 프로젝트 ERD 명세서
 ----------------------
 <img src='http://drive.google.com/uc?export=view&id=1V_fHAHFACenuV5mOmJrj2wORf3jCm-u9' /><br>
-> URL : https://aquerytool.com/aquerymain/index/?rurl=bbfd7479-446e-4111-976c-63836abfc20d&
-> Password : 78ys1d
+> 1) URL : https://aquerytool.com/aquerymain/index/?rurl=bbfd7479-446e-4111-976c-63836abfc20d&
+> 2) Password : 78ys1d
 
 
 
