@@ -3,12 +3,14 @@
 - 개발 기간 : 2022/02 ~2022/03
 
 ## 1. 기술 스택
-1) Backend : Spring Boot
-2) Database : AWS RDS MySQL Database 
+1) Backend : Spring Boot/Java
+2) Database : AWS RDS Database - MySQL 8.0.28 ver
 3) Server 
     1) Deploy : AWS EC2 Linux instance
-    2) Domain : 가비아 
-    3) Engine : Nginx
+        1) OS : Ubuntu 20.04 
+        2) Web Server : Nginx
+    3) Domain : Gabia  
+   
 <br>
 
 ## 2. 프로젝트 ERD 명세서
