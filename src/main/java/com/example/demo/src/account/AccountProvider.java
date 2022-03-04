@@ -55,9 +55,18 @@ public class AccountProvider {
         }
     }
 
+  //userId 존재하는지 확인
     public int checkUserId(String userId) throws BaseException{
         try{
             return accountDao.checkUserId(userId);
+        } catch (Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+    //userNum으로 유저 존재하는지 확인
+    public int checkUserNum(int userNum) throws BaseException{
+        try{
+            return accountDao.checkUserNum(userNum);
         } catch (Exception exception){
             throw new BaseException(DATABASE_ERROR);
         }

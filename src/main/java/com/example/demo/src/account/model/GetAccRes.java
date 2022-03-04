@@ -15,11 +15,10 @@ public class GetAccRes {
     private int user_num;
     private String user_id;
     private String user_pw;
-    private int user_nation_id;
     private String user_phone;
-    private int user_membership_id;
+    private String user_membership_name;
     private Date user_membership_date;
     private Timestamp user_join_date;
-    private int user_payment_id;
+    private String user_payment_method;
     List <GetProfileRes> profileList;
 }

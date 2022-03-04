@@ -24,6 +24,8 @@ public enum BaseResponseStatus {
 
     // users
     USERS_EMPTY_USER_ID(false, 2010, "유저 아이디 값을 확인해주세요."),
+    //accounts
+    ACCOUNT_DOESNT_EXISTS(false, 2011, "계정이 존재하지 않습니다."),
 
     // [POST] /users
     POST_USERS_EMPTY_EMAIL(false, 2015, "이메일을 입력해주세요."),
@@ -57,6 +59,20 @@ public enum BaseResponseStatus {
 
     //[PATCH] /users/{userIdx}
     MODIFY_FAIL_USERNAME(false,4014,"유저네임 수정 실패"),
+    // /accounts/{userNum}
+    MODIFY_FAIL_USER_ID(false,4015,"유저ID 수정 실패"),
+    MODIFY_FAIL_USER_PHONE_NUM(false,4016,"유저 전화번호 수정 실패"),
+    MODIFY_FAIL_USER_PAYMENT(false,4017,"유저 결제수단 수정 실패"),
+    MODIFY_FAIL_USER_MEMBERSHIP(false,4018,"유저 멤버쉽 수정 실패"),
+    MODIFY_ACCOUNTS_INVALID_ID(false, 4019, "ID 형식을 확인해주세요."),
+    MODIFY_FAIL_USER_PW(false,4020,"유저PW 수정 실패"),
+    // /settings
+    PROFILE_ID_DOESNT_EXISTS(false,4021,"해당 프로필은 존재하지 않습니다."),
+    MODIFY_FAIL_PROFILE_LANGUAGE(false,4022,"프로필 언어 설정 실패"),
+    MODIFY_FAIL_PROFILE_RESTRICTION(false,4023,"프로필 시청 제한 수정 실패"),
+    MODIFY_FAIL_PROFILE_LOCK(false,4024,"프로필 잠금 설정 실패"),
+    MODIFY_FAIL_PROFILE_PLAYBACK(false,4025,"프로필 재생 설정 실패"),
+    MODIFY_FAIL_PROFILE_COMMUNICATION(false,4026,"프로필 광고 수신 설정 실패"),
 
     PASSWORD_ENCRYPTION_ERROR(false, 4011, "비밀번호 암호화에 실패하였습니다."),
     PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다.");

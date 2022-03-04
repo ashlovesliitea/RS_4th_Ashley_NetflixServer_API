@@ -17,7 +17,6 @@ public class PostAccReq {
     private String user_phone;
     private int user_membership_id;
     private Date user_membership_date;
-    private Timestamp user_join_date;
     private int user_payment_id;
 
 }

@@ -3,13 +3,8 @@ package com.example.demo.src.account;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
-import com.example.demo.src.account.model.Account;
-import com.example.demo.src.account.model.GetAccRes;
-import com.example.demo.src.account.model.PostAccReq;
-import com.example.demo.src.account.model.PostAccRes;
-import com.example.demo.src.userExample.model.GetUserRes;
-import com.example.demo.src.userExample.model.PostUserReq;
-import com.example.demo.src.userExample.model.PostUserRes;
+import com.example.demo.src.account.model.*;
+import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +23,13 @@ public class AccountController {
 
     private final AccountProvider accountProvider;
     private final AccountService accountService;
-    private final AccountDao accountDao;
+    private final JwtService jwtService;
 
     @Autowired //생성자 주입을 권장함.
-    public AccountController(AccountProvider accountProvider, AccountService accountService, AccountDao accountDao) {
+    public AccountController(AccountProvider accountProvider, AccountService accountService, JwtService jwtService) {
         this.accountProvider = accountProvider;
         this.accountService = accountService;
-        this.accountDao = accountDao;
+        this.jwtService = jwtService;
     }
 
     /**
@@ -57,7 +52,6 @@ public class AccountController {
     }
 
     /**
-     * 계정 조회 API
      * [POST] /accounts
      * 회원가입 API
      * [POST] /accounts
@@ -81,6 +75,24 @@ public class AccountController {
             return new BaseResponse<>((exception.getStatus()));
         }
     }
+
+    /**
+     * [POST] /accounts/{userNum}/profiles
+     * 프로필 생성 API
+     * [POST] /accounts
+     * @return BaseResponse<>
+     * */
+    @ResponseBody
+    @PostMapping("/{userNum}/profiles")
+    public BaseResponse<PostProfileRes> createProfile(@PathVariable("userNum") int userNum, @RequestBody PostProfileReq postProfileReq) {
+        try{
+           PostProfileRes postProfileRes = accountService.createProfile(postProfileReq);
+            return new BaseResponse<>(postProfileRes);
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
     /**
      * 계정 조회 API
      * [GET] /accounts
@@ -101,5 +113,159 @@ public class AccountController {
         }
     }
 
+    /**
+     * 유저 ID(이메일)변경 API
+     * [PATCH] /accounts/{userNum}/email
+     * @return BaseResponse<String>
+     */
+    @ResponseBody
+    @PatchMapping("/{userNum}/email")
+    public BaseResponse<String> modifyUserId(@PathVariable("userNum") int userNum, @RequestBody PatchAccIdReq patchAccIdReq){
+        try {
+            /*
+            //jwt에서 idx 추출.
+            int userNumByJwt = jwtService.getUserIdx();
+            //userIdx와 접근한 유저가 같은지 확인
+            if(userNum != userNumByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }*/
 
+            int userNumFound = accountProvider.checkUserNum(userNum);
+            if(userNumFound==0){
+                return new BaseResponse<>(ACCOUNT_DOESNT_EXISTS);
+            }
+
+            accountService.modifyAccountId(patchAccIdReq);
+
+            String result = "";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+
+    /**
+     * 유저 비밀번호 변경 API
+     * [PATCH] /accounts/{userNum}/password
+     * @return BaseResponse<String>
+     */
+    @ResponseBody
+    @PatchMapping("/{userNum}/password")
+    public BaseResponse<String> modifyUserPW(@PathVariable("userNum") int userNum, @RequestBody PatchAccPWReq patchAccPWReq){
+        try {
+            /*
+            //jwt에서 idx 추출.
+            int userNumByJwt = jwtService.getUserIdx();
+            //userIdx와 접근한 유저가 같은지 확인
+            if(userNum != userNumByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }*/
+
+            int userNumFound = accountProvider.checkUserNum(userNum);
+            if(userNumFound==0){
+                return new BaseResponse<>(ACCOUNT_DOESNT_EXISTS);
+            }
+
+            accountService.modifyAccountPW(patchAccPWReq);
+
+            String result = "";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    /**
+     * 유저 전화번호 변경 API
+     * [PATCH] /accounts/{userNum}/phone
+     * @return BaseResponse<String>
+     */
+    @ResponseBody
+    @PatchMapping("/{userNum}/phone")
+    public BaseResponse<String> modifyUserPhone(@PathVariable("userNum") int userNum, @RequestBody PatchAccPhoneReq patchAccPhoneReq){
+        try {
+            /*
+            //jwt에서 idx 추출.
+            int userNumByJwt = jwtService.getUserIdx();
+            //userIdx와 접근한 유저가 같은지 확인
+            if(userNum != userNumByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }*/
+
+            int userNumFound = accountProvider.checkUserNum(userNum);
+            if(userNumFound==0){
+                return new BaseResponse<>(ACCOUNT_DOESNT_EXISTS);
+            }
+
+            accountService.modifyAccountPhone(patchAccPhoneReq);
+
+            String result = "";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    /**
+     * 유저 멤버쉽 변경 API
+     * [PATCH] /accounts/{userNum}/membership
+     * @return BaseResponse<String>
+     */
+    @ResponseBody
+    @PatchMapping("/{userNum}/membership")
+    public BaseResponse<String> modifyUserMembership(@PathVariable("userNum") int userNum, @RequestBody PatchAccMemReq patchAccMemReq){
+        try {
+            /*
+            //jwt에서 idx 추출.
+            int userNumByJwt = jwtService.getUserIdx();
+            //userIdx와 접근한 유저가 같은지 확인
+            if(userNum != userNumByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }*/
+
+            int userNumFound = accountProvider.checkUserNum(userNum);
+            if(userNumFound==0){
+                return new BaseResponse<>(ACCOUNT_DOESNT_EXISTS);
+            }
+
+            accountService.modifyAccountMembership(patchAccMemReq);
+
+            String result = "";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    /**
+     * 유저 결제수단 변경 API
+     * [PATCH] /accounts/{userNum}/payment
+     * @return BaseResponse<String>
+     */
+    @ResponseBody
+    @PatchMapping("/{userNum}/payment")
+    public BaseResponse<String> modifyUserPayment(@PathVariable("userNum") int userNum, @RequestBody PatchAccPayReq patchAccPayReq){
+        try {
+            /*
+            //jwt에서 idx 추출.
+            int userNumByJwt = jwtService.getUserIdx();
+            //userIdx와 접근한 유저가 같은지 확인
+            if(userNum != userNumByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }*/
+
+            int userNumFound = accountProvider.checkUserNum(userNum);
+            if(userNumFound==0){
+                return new BaseResponse<>(ACCOUNT_DOESNT_EXISTS);
+            }
+
+            accountService.modifyAccountPayment(patchAccPayReq);
+
+            String result = "";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
 }

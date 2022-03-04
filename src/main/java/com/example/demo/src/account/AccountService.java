@@ -2,8 +2,7 @@ package com.example.demo.src.account;
 
 
 import com.example.demo.config.BaseException;
-import com.example.demo.src.account.model.PostAccReq;
-import com.example.demo.src.account.model.PostAccRes;
+import com.example.demo.src.account.model.*;
 import com.example.demo.src.userExample.model.PostUserRes;
 import com.example.demo.utils.JwtService;
 import com.example.demo.utils.SHA256;
@@ -52,6 +51,87 @@ public class AccountService {
             String jwt = jwtService.createJwt(userNum);
             return new PostAccRes(jwt,userNum);
         } catch (Exception exception) {
+            System.out.println("exception = " + exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    //POST
+    public PostProfileRes createProfile(PostProfileReq postProfileReq) throws BaseException {
+
+        try{
+            String profile_id = accountDao.createProfile(postProfileReq);
+
+            return new PostProfileRes(profile_id);
+        } catch (Exception exception) {
+            System.out.println("exception = " + exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+
+    public void modifyAccountId(PatchAccIdReq patchAccIdReq) throws BaseException{
+        try{
+            int result=accountDao.ModifyAccountId(patchAccIdReq);
+            if(result==0){
+                throw new BaseException(MODIFY_FAIL_USER_ID);
+            }
+
+        }
+        catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public void modifyAccountPW(PatchAccPWReq patchAccPWReq) throws BaseException{
+        try{
+            int result=accountDao.ModifyAccountPW(patchAccPWReq);
+            if(result==0){
+                throw new BaseException(MODIFY_FAIL_USER_PW);
+            }
+
+        }
+        catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+
+    public void modifyAccountPhone(PatchAccPhoneReq patchAccPhoneReq) throws BaseException{
+        try{
+            int result=accountDao.ModifyAccountPhone(patchAccPhoneReq);
+            if(result==0){
+                throw new BaseException(MODIFY_FAIL_USER_PHONE_NUM);
+            }
+
+        }
+        catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public void modifyAccountMembership(PatchAccMemReq patchAccMemReq) throws BaseException{
+        try{
+            int result=accountDao.ModifyAccountMembership(patchAccMemReq);
+            if(result==0){
+                throw new BaseException(MODIFY_FAIL_USER_MEMBERSHIP);
+            }
+
+        }
+        catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public void modifyAccountPayment(PatchAccPayReq patchAccPayReq) throws BaseException{
+        try{
+            int result=accountDao.ModifyAccountPayment(patchAccPayReq);
+            if(result==0){
+                throw new BaseException(MODIFY_FAIL_USER_PAYMENT);
+            }
+
+        }
+        catch(Exception exception){
             throw new BaseException(DATABASE_ERROR);
         }
     }
