@@ -2,7 +2,7 @@ package com.example.demo.src.setting;
 
 
 import com.example.demo.config.BaseException;
-import com.example.demo.src.setting.model.GetProfileWatchedRes;
+import com.example.demo.src.setting.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +31,45 @@ public class SettingProvider {
         }
     }
 
+    public int checkProfileWatchedList(PatchProfileWatchedReq patchProfileWatchedReq) throws BaseException{
+        try{
+            return settingDao.checkProfileWatchedList(patchProfileWatchedReq);
+        }catch(Exception exception){
+            System.out.println("exception = " + exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public int checkProfileWatchedList2(PostProfileWatchedReq postProfileWatchedReq) throws BaseException{
+        try{
+            return settingDao.checkProfileWatchedList2(postProfileWatchedReq);
+        }catch(Exception exception){
+            System.out.println("exception = " + exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public int checkProfileRatedList(PatchProfileRatedReq patchProfileRatedReq) throws BaseException{
+        try{
+            return settingDao.checkProfileRatedList(patchProfileRatedReq);
+        }catch(Exception exception){
+            System.out.println("exception = " + exception);
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
     public List<GetProfileWatchedRes> getProfileWatchedList(String profileId) throws BaseException{
         try{
             List<GetProfileWatchedRes> acc=settingDao.getProfileWatchedList(profileId);
+            return acc;
+        }
+        catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public List<GetProfileRatedRes> getProfileRatedList(String profileId) throws BaseException{
+        try{
+            List<GetProfileRatedRes> acc=settingDao.getProfileRatedList(profileId);
             return acc;
         }
         catch(Exception exception){

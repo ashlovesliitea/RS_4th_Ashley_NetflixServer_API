@@ -73,12 +73,21 @@ public enum BaseResponseStatus {
     MODIFY_FAIL_PROFILE_LOCK(false,4024,"프로필 잠금 설정 실패"),
     MODIFY_FAIL_PROFILE_PLAYBACK(false,4025,"프로필 재생 설정 실패"),
     MODIFY_FAIL_PROFILE_COMMUNICATION(false,4026,"프로필 광고 수신 설정 실패"),
+    MODIFY_FAIL_PROFILE_RATED_LIST(false,4027,"프로필이 평가한 리스트 수정 실패"),
+    MODIFY_FAIL_PROFILE_WATCHED_LIST(false,4028,"프로필이 시청한 리스트 수정 실패"),
+
+    CREATE_FAIL_PROFILE_RATED_LIST(false,4050,"프로필이 평가한 리스트 추가 실패"),
+    CREATE_FAIL_PROFILE_WATCHED_LIST(false,4051,"프로필이 시청한 리스트 추가 실패"),
+    PROFILE_WATCHED_RECORD_DOESNT_EXISTS(false,4052,"해당 영상 시청 기록이 없습니다. 생성후에 시도하세요."),
+    PROFILE_RATED_RECORD_DOESNT_EXISTS(false,4053,"해당 영상을 평가한 기록이 없습니다. 생성 후에 시도하세요."),
+    PROFILE_WATCHED_RECORD_ALREADY_EXISTS(false,4053,"해당 영상을 시청한 기록이 존재합니다. 수정을 시도하세요."),
 
     PASSWORD_ENCRYPTION_ERROR(false, 4011, "비밀번호 암호화에 실패하였습니다."),
-    PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다.");
+    PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다."),
 
 
-    // 5000 : 필요시 만들어서 쓰세요
+    // 5000 (video 관련)
+    GET_VIDEO_LIST_FAIL(false,5001,"영상 리스트 조회에 실패했습니다.");
     // 6000 : 필요시 만들어서 쓰세요
 
 
