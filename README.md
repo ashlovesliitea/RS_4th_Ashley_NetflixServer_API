@@ -1,4 +1,4 @@
-# RS_4th_Ashley_NeflixServer_API
+# RS_4th_Ashley_NetflixServer_API
 - 해당 프로젝트를 통해 Netflix Server단의 주요 REST API를 구현하였습니다.
 - 개발 기간 : 2022/02 ~2022/03
 
