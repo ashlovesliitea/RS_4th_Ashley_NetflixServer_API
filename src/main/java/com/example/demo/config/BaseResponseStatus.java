@@ -26,6 +26,7 @@ public enum BaseResponseStatus {
     USERS_EMPTY_USER_ID(false, 2010, "유저 아이디 값을 확인해주세요."),
     //accounts
     ACCOUNT_DOESNT_EXISTS(false, 2011, "계정이 존재하지 않습니다."),
+    ACCOUNT_DEACTIVATED(false, 2012, "계정이 비활성화 되었습니다."),
 
     // [POST] /users
     POST_USERS_EMPTY_EMAIL(false, 2015, "이메일을 입력해주세요."),

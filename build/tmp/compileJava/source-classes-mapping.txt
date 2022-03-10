@@ -1,128 +1,138 @@
+com/example/demo/src/setting/model/response/GetProfileWatchedRes.java
+ com.example.demo.src.setting.model.response.GetProfileWatchedRes
 com/example/demo/src/userExample/model/GetUserRes.java
  com.example.demo.src.userExample.model.GetUserRes
-com/example/demo/src/video/model/Video.java
- com.example.demo.src.video.model.Video
+com/example/demo/src/account/model/entity/Account.java
+ com.example.demo.src.account.model.entity.Account
+com/example/demo/src/annotation/NoAuth.java
+ com.example.demo.src.annotation.NoAuth
+com/example/demo/src/setting/model/entity/Profile.java
+ com.example.demo.src.setting.model.entity.Profile
 com/example/demo/config/Constant.java
  com.example.demo.config.Constant
-com/example/demo/src/setting/model/PatchProfileWatchedReq.java
- com.example.demo.src.setting.model.PatchProfileWatchedReq
+com/example/demo/src/account/model/response/PostProfileRes.java
+ com.example.demo.src.account.model.response.PostProfileRes
 com/example/demo/src/userExample/UserProvider.java
  com.example.demo.src.userExample.UserProvider
 com/example/demo/utils/ValidationRegex.java
  com.example.demo.utils.ValidationRegex
-com/example/demo/src/account/model/PatchAccPayReq.java
- com.example.demo.src.account.model.PatchAccPayReq
 com/example/demo/src/userExample/UserController.java
  com.example.demo.src.userExample.UserController
 com/example/demo/src/userExample/UserDao.java
  com.example.demo.src.userExample.UserDao
-com/example/demo/src/account/model/PostAccReq.java
- com.example.demo.src.account.model.PostAccReq
 com/example/demo/config/BaseResponseStatus.java
  com.example.demo.config.BaseResponseStatus
 com/example/demo/src/userExample/model/PostLoginRes.java
  com.example.demo.src.userExample.model.PostLoginRes
 com/example/demo/src/userExample/model/PostUserRes.java
  com.example.demo.src.userExample.model.PostUserRes
-com/example/demo/src/account/model/PatchAccMemReq.java
- com.example.demo.src.account.model.PatchAccMemReq
-com/example/demo/src/video/model/GetVideoRes.java
- com.example.demo.src.video.model.GetVideoRes
+com/example/demo/src/video/model/response/GetVideoRes.java
+ com.example.demo.src.video.model.response.GetVideoRes
+com/example/demo/src/setting/model/request/PatchProfileRatedReq.java
+ com.example.demo.src.setting.model.request.PatchProfileRatedReq
+com/example/demo/src/setting/model/request/PatchProfileCommReq.java
+ com.example.demo.src.setting.model.request.PatchProfileCommReq
 com/example/demo/src/video/VideoProvider.java
  com.example.demo.src.video.VideoProvider
-com/example/demo/src/setting/model/GetProfileRatedRes.java
- com.example.demo.src.setting.model.GetProfileRatedRes
-com/example/demo/src/setting/model/Profile.java
- com.example.demo.src.setting.model.Profile
+com/example/demo/src/account/model/response/GetAccRes.java
+ com.example.demo.src.account.model.response.GetAccRes
 com/example/demo/config/secret/Secret.java
  com.example.demo.config.secret.Secret
-com/example/demo/src/setting/model/PostProfileRatedReq.java
- com.example.demo.src.setting.model.PostProfileRatedReq
+com/example/demo/src/setting/model/request/PatchProfileLockReq.java
+ com.example.demo.src.setting.model.request.PatchProfileLockReq
+com/example/demo/src/account/model/response/PostAccRes.java
+ com.example.demo.src.account.model.response.PostAccRes
+com/example/demo/src/setting/model/response/GetProfileRatedRes.java
+ com.example.demo.src.setting.model.response.GetProfileRatedRes
 com/example/demo/config/BaseResponse.java
  com.example.demo.config.BaseResponse
 com/example/demo/src/video/VideoDao.java
  com.example.demo.src.video.VideoDao
 com/example/demo/src/setting/SettingProvider.java
  com.example.demo.src.setting.SettingProvider
-com/example/demo/src/setting/model/PatchProfileLangReq.java
- com.example.demo.src.setting.model.PatchProfileLangReq
-com/example/demo/src/account/model/PostProfileReq.java
- com.example.demo.src.account.model.PostProfileReq
-com/example/demo/src/account/model/GetProfileRes.java
- com.example.demo.src.account.model.GetProfileRes
-com/example/demo/src/setting/model/PatchProfilePlayReq.java
- com.example.demo.src.setting.model.PatchProfilePlayReq
 com/example/demo/config/BaseException.java
  com.example.demo.config.BaseException
-com/example/demo/src/setting/model/PatchProfileRestrictReq.java
- com.example.demo.src.setting.model.PatchProfileRestrictReq
-com/example/demo/src/account/model/PatchAccPhoneReq.java
- com.example.demo.src.account.model.PatchAccPhoneReq
-com/example/demo/src/video/model/Episode.java
- com.example.demo.src.video.model.Episode
+com/example/demo/src/video/model/entity/Episode.java
+ com.example.demo.src.video.model.entity.Episode
 com/example/demo/src/setting/SettingController.java
  com.example.demo.src.setting.SettingController
 com/example/demo/src/userExample/model/PostLoginReq.java
  com.example.demo.src.userExample.model.PostLoginReq
 com/example/demo/src/video/VideoService.java
  com.example.demo.src.video.VideoService
-com/example/demo/src/setting/model/PatchProfileRatedReq.java
- com.example.demo.src.setting.model.PatchProfileRatedReq
 com/example/demo/utils/SHA256.java
  com.example.demo.utils.SHA256
-com/example/demo/src/account/model/GetAccRes.java
- com.example.demo.src.account.model.GetAccRes
+com/example/demo/src/video/model/entity/Video.java
+ com.example.demo.src.video.model.entity.Video
+com/example/demo/src/video/model/response/GetMoviesRes.java
+ com.example.demo.src.video.model.response.GetMoviesRes
+com/example/demo/src/account/model/response/PostAuthRes.java
+ com.example.demo.src.account.model.response.PostAuthRes
+com/example/demo/src/account/model/request/PatchAccMemReq.java
+ com.example.demo.src.account.model.request.PatchAccMemReq
+com/example/demo/src/account/model/request/PostAuthReq.java
+ com.example.demo.src.account.model.request.PostAuthReq
 com/example/demo/src/account/AccountDao.java
  com.example.demo.src.account.AccountDao
 com/example/demo/src/userExample/model/PostUserReq.java
  com.example.demo.src.userExample.model.PostUserReq
-com/example/demo/src/setting/model/GetProfileWatchedRes.java
- com.example.demo.src.setting.model.GetProfileWatchedRes
+com/example/demo/src/account/model/request/PatchAccPhoneReq.java
+ com.example.demo.src.account.model.request.PatchAccPhoneReq
+com/example/demo/src/setting/model/request/PostProfileWatchedReq.java
+ com.example.demo.src.setting.model.request.PostProfileWatchedReq
+com/example/demo/src/account/model/request/PatchAccPayReq.java
+ com.example.demo.src.account.model.request.PatchAccPayReq
 com/example/demo/src/WebSecurityConfig.java
  com.example.demo.src.WebSecurityConfig
-com/example/demo/src/account/model/PatchAccPWReq.java
- com.example.demo.src.account.model.PatchAccPWReq
+com/example/demo/src/account/model/response/GetProfileRes.java
+ com.example.demo.src.account.model.response.GetProfileRes
+com/example/demo/src/account/model/request/PatchAccPWReq.java
+ com.example.demo.src.account.model.request.PatchAccPWReq
 com/example/demo/src/test/TestController.java
  com.example.demo.src.test.TestController
-com/example/demo/src/account/model/Account.java
- com.example.demo.src.account.model.Account
 com/example/demo/src/userExample/model/PatchUserReq.java
  com.example.demo.src.userExample.model.PatchUserReq
+com/example/demo/src/setting/model/request/PatchProfileWatchedReq.java
+ com.example.demo.src.setting.model.request.PatchProfileWatchedReq
 com/example/demo/src/account/AccountProvider.java
  com.example.demo.src.account.AccountProvider
+com/example/demo/src/account/model/entity/Profile.java
+ com.example.demo.src.account.model.entity.Profile
 com/example/demo/src/account/AccountService.java
  com.example.demo.src.account.AccountService
-com/example/demo/src/setting/model/PatchProfileLockReq.java
- com.example.demo.src.setting.model.PatchProfileLockReq
-com/example/demo/src/account/model/Profile.java
- com.example.demo.src.account.model.Profile
-com/example/demo/src/setting/model/PatchProfileCommReq.java
- com.example.demo.src.setting.model.PatchProfileCommReq
-com/example/demo/src/account/model/PostProfileRes.java
- com.example.demo.src.account.model.PostProfileRes
+com/example/demo/src/account/model/request/PostProfileReq.java
+ com.example.demo.src.account.model.request.PostProfileReq
+com/example/demo/src/account/model/request/PatchAccIdReq.java
+ com.example.demo.src.account.model.request.PatchAccIdReq
 com/example/demo/src/setting/SettingDao.java
  com.example.demo.src.setting.SettingDao
 com/example/demo/src/userExample/model/User.java
  com.example.demo.src.userExample.model.User
 com/example/demo/src/userExample/UserService.java
  com.example.demo.src.userExample.UserService
+com/example/demo/src/setting/model/request/PostProfileRatedReq.java
+ com.example.demo.src.setting.model.request.PostProfileRatedReq
 com/example/demo/src/account/AccountController.java
  com.example.demo.src.account.AccountController
-com/example/demo/src/account/model/PatchAccIdReq.java
- com.example.demo.src.account.model.PatchAccIdReq
-com/example/demo/src/video/model/GetMoviesRes.java
- com.example.demo.src.video.model.GetMoviesRes
+com/example/demo/src/setting/model/request/PatchProfileRestrictReq.java
+ com.example.demo.src.setting.model.request.PatchProfileRestrictReq
+com/example/demo/src/account/model/request/PostAccReq.java
+ com.example.demo.src.account.model.request.PostAccReq
+com/example/demo/src/setting/model/request/PatchProfilePlayReq.java
+ com.example.demo.src.setting.model.request.PatchProfilePlayReq
 com/example/demo/src/setting/SettingService.java
  com.example.demo.src.setting.SettingService
-com/example/demo/src/account/model/PostAccRes.java
- com.example.demo.src.account.model.PostAccRes
-com/example/demo/src/video/model/GetSeriesRes.java
- com.example.demo.src.video.model.GetSeriesRes
 com/example/demo/DemoApplication.java
  com.example.demo.DemoApplication
+com/example/demo/src/video/model/response/GetSeriesRes.java
+ com.example.demo.src.video.model.response.GetSeriesRes
 com/example/demo/utils/JwtService.java
  com.example.demo.utils.JwtService
 com/example/demo/src/video/VideoController.java
  com.example.demo.src.video.VideoController
-com/example/demo/src/setting/model/PostProfileWatchedReq.java
- com.example.demo.src.setting.model.PostProfileWatchedReq
+com/example/demo/src/setting/model/request/PatchProfileLangReq.java
+ com.example.demo.src.setting.model.request.PatchProfileLangReq
+com/example/demo/src/interceptor/AuthenticationInterceptor.java
+ com.example.demo.src.interceptor.AuthenticationInterceptor
+com/example/demo/WebConfig.java
+ com.example.demo.WebConfig

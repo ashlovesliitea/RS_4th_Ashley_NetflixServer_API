@@ -1,10 +1,9 @@
 package com.example.demo.src.video;
 
 import com.example.demo.config.BaseException;
-import com.example.demo.config.BaseResponseStatus;
-import com.example.demo.src.video.model.GetMoviesRes;
-import com.example.demo.src.video.model.GetSeriesRes;
-import com.example.demo.src.video.model.GetVideoRes;
+import com.example.demo.src.video.model.response.GetMoviesRes;
+import com.example.demo.src.video.model.response.GetSeriesRes;
+import com.example.demo.src.video.model.response.GetVideoRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;

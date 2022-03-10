@@ -1,17 +1,19 @@
 package com.example.demo.src.account;
 
 import com.example.demo.config.BaseException;
-import com.example.demo.src.account.model.Account;
-import com.example.demo.src.account.model.GetAccRes;
-import com.example.demo.src.userExample.model.GetUserRes;
+import com.example.demo.src.account.model.entity.Account;
+import com.example.demo.src.account.model.response.GetAccRes;
+import com.example.demo.src.account.model.request.PostAuthReq;
+import com.example.demo.src.account.model.response.PostAuthRes;
 import com.example.demo.utils.JwtService;
+import com.example.demo.utils.SHA256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-import static com.example.demo.config.BaseResponseStatus.DATABASE_ERROR;
+import static com.example.demo.config.BaseResponseStatus.*;
 
 @Service
 @RequestMapping("/app/accounts")
@@ -69,6 +71,35 @@ public class AccountProvider {
             return accountDao.checkUserNum(userNum);
         } catch (Exception exception){
             throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public int checkAccountStatus(String userId)throws BaseException{
+        try{
+            return accountDao.checkAccountStatus(userId);
+        }
+        catch(Exception e){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public PostAuthRes accountAuth(PostAuthReq postAuthReq) throws BaseException {
+        Account acc=accountDao.getPwd(postAuthReq.getUser_id());
+        String encryptedPwd;
+        try{
+            encryptedPwd= new SHA256().encrypt(postAuthReq.getUser_pw());
+
+        }catch(Exception ignored) {
+            throw new BaseException(PASSWORD_ENCRYPTION_ERROR);
+        }
+
+        if(acc.getUser_pw().equals(encryptedPwd)){
+            int userNum=acc.getUser_num();
+            String jwt=jwtService.createJwt(userNum);
+            return new PostAuthRes(userNum,jwt);
+        }
+        else{
+            throw new BaseException(FAILED_TO_LOGIN);
         }
     }
 }

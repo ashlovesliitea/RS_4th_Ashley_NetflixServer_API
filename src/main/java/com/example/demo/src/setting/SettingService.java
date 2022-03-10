@@ -3,8 +3,8 @@ package com.example.demo.src.setting;
 import com.example.demo.config.BaseException;
 import static com.example.demo.config.BaseResponseStatus.*;
 
-import com.example.demo.src.setting.model.PatchProfileLockReq;
-import com.example.demo.src.setting.model.*;
+import com.example.demo.src.setting.model.request.PatchProfileLockReq;
+import com.example.demo.src.setting.model.request.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -113,7 +113,7 @@ public class SettingService {
         }
     }
 
-    public void modifyProfileWatchedList(PatchProfileWatchedReq patchProfileWatchedReq,int watchedlist_id)throws BaseException{
+    public void modifyProfileWatchedList(PatchProfileWatchedReq patchProfileWatchedReq, int watchedlist_id)throws BaseException{
         try{
             int result=settingDao.modifyProfileWatchedList(patchProfileWatchedReq,watchedlist_id);
 
@@ -126,7 +126,7 @@ public class SettingService {
         }
     }
 
-    public void modifyProfileRatedList(PatchProfileRatedReq patchProfileRatedReq,int ratinglist_id)throws BaseException{
+    public void modifyProfileRatedList(PatchProfileRatedReq patchProfileRatedReq, int ratinglist_id)throws BaseException{
         try{
             int result=settingDao.modifyProfileRatedList(patchProfileRatedReq,ratinglist_id);
 

@@ -2,7 +2,11 @@ package com.example.demo.src.setting;
 
 
 import com.example.demo.config.BaseException;
-import com.example.demo.src.setting.model.*;
+import com.example.demo.src.setting.model.request.PatchProfileRatedReq;
+import com.example.demo.src.setting.model.request.PatchProfileWatchedReq;
+import com.example.demo.src.setting.model.request.PostProfileWatchedReq;
+import com.example.demo.src.setting.model.response.GetProfileRatedRes;
+import com.example.demo.src.setting.model.response.GetProfileWatchedRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;

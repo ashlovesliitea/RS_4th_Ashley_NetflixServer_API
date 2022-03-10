@@ -1,12 +1,13 @@
 package com.example.demo.src.account;
 
 
-import com.example.demo.src.account.model.*;
-import com.example.demo.src.userExample.model.PostUserReq;
+import com.example.demo.src.account.model.entity.Account;
+import com.example.demo.src.account.model.request.*;
+import com.example.demo.src.account.model.response.GetAccRes;
+import com.example.demo.src.account.model.response.GetProfileRes;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -134,6 +135,32 @@ public class AccountDao {
 
     }
 
+    public int checkAccountStatus(String userId){
+        String checkAccQuery = "select user_activate_status from User where user_id=?";
+        String checkAccParam=userId;
+        return this.jdbcTemplate.queryForObject(checkAccQuery,
+                int.class,
+                checkAccParam);
+
+    }
+
+    public Account getPwd(String userId){
+        String getPwdQuery = "select * from User where user_id=?";
+        String getPwdParam=userId;
+        return this.jdbcTemplate.queryForObject(getPwdQuery,
+                (rs,rowNum)-> new Account(
+                        rs.getInt("user_num"),
+                        rs.getString("user_id"),
+                        rs.getString("user_pw"),
+                        rs.getInt("nation_id"),
+                        rs.getString("user_phone"),
+                        rs.getInt("membership_id"),
+                        rs.getDate("membership_date"),
+                        rs.getTimestamp("user_join_date"),
+                        rs.getInt("user_payment_id")
+                ),getPwdParam);
+
+    }
     public int createAccount(PostAccReq postAccReq){
         String createAccQuery = "insert into User (user_num, user_id, user_pw, nation_id,user_phone,membership_id,membership_date,user_join_date,user_payment_id) VALUES (?,?,?,?,?,?,?,?,?)";
         String lastInsertedIdQuery = "select MAX(user_num) from User";

@@ -1,7 +1,9 @@
 package com.example.demo.src.setting;
 
-import com.example.demo.src.setting.model.PatchProfileLockReq;
-import com.example.demo.src.setting.model.*;
+import com.example.demo.src.setting.model.request.PatchProfileLockReq;
+import com.example.demo.src.setting.model.request.*;
+import com.example.demo.src.setting.model.response.GetProfileRatedRes;
+import com.example.demo.src.setting.model.response.GetProfileWatchedRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

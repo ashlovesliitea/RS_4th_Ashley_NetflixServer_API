@@ -1,18 +1,12 @@
 package com.example.demo.src.test;
 
-import com.example.demo.src.account.model.GetAccRes;
-import com.example.demo.src.account.model.GetProfileRes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.sql.DataSource;
-import java.util.List;
 
 @RestController
 @RequestMapping("/test")

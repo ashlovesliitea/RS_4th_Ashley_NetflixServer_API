@@ -3,7 +3,13 @@ package com.example.demo.src.account;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
-import com.example.demo.src.account.model.*;
+import com.example.demo.src.account.model.request.*;
+import com.example.demo.src.account.model.response.GetAccRes;
+import com.example.demo.src.account.model.response.PostAccRes;
+import com.example.demo.src.account.model.response.PostProfileRes;
+import com.example.demo.src.account.model.request.PostAuthReq;
+import com.example.demo.src.account.model.response.PostAuthRes;
+import com.example.demo.src.annotation.NoAuth;
 import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +21,8 @@ import java.util.List;
 import static com.example.demo.config.BaseResponseStatus.*;
 import static com.example.demo.utils.ValidationRegex.isRegexEmail;
 
+
+
 @RestController
 @RequestMapping("/app/accounts")
 public class AccountController {
@@ -24,6 +32,8 @@ public class AccountController {
     private final AccountProvider accountProvider;
     private final AccountService accountService;
     private final JwtService jwtService;
+    private static final int user_activated=1;
+    private static final int user_deactivated=0;
 
     @Autowired //생성자 주입을 권장함.
     public AccountController(AccountProvider accountProvider, AccountService accountService, JwtService jwtService) {
@@ -38,7 +48,7 @@ public class AccountController {
      * 모든 계정을 조회하는 API
      * * @return BaseResponse<List<GetAccRes>>
      * */
-
+    @NoAuth
     @ResponseBody
     @GetMapping("")
     public BaseResponse <List<GetAccRes>> getAccounts(){
@@ -60,7 +70,6 @@ public class AccountController {
     @ResponseBody
     @PostMapping("")
     public BaseResponse<PostAccRes> createUser(@RequestBody PostAccReq postAccReq) {
-        // TODO: email 관련한 짧은 validation 예시입니다. 그 외 더 부가적으로 추가해주세요!
         if(postAccReq.getUser_id()== null){
             return new BaseResponse<>(POST_ACCOUNTS_EMPTY_ID);
         }
@@ -100,7 +109,7 @@ public class AccountController {
      * [GET] /accounts/:userNum
      * @return BaseResponse<>
      * */
-
+    @NoAuth
     @ResponseBody
     @GetMapping("/{userNum}")
     public BaseResponse<GetAccRes> getUser(@PathVariable("userNum") int userNum){
@@ -112,6 +121,35 @@ public class AccountController {
             return new BaseResponse<>((be.getStatus()));
         }
     }
+    /**
+     * 유저 로그인
+     * [POST] /accounts/auth
+     * @return BaseResponse<String>
+     */
+    @NoAuth
+    @ResponseBody
+    @PostMapping("/auth")
+    public BaseResponse<PostAuthRes> accountAuth(@RequestBody PostAuthReq postAuthReq) throws BaseException {
+        if(postAuthReq.getUser_id()==null){
+            return new BaseResponse<>(POST_USERS_EMPTY_EMAIL);
+        }
+        if(!isRegexEmail(postAuthReq.getUser_id())){
+            return new BaseResponse<>(POST_USERS_INVALID_EMAIL);
+        }
+        int checkAccountStatus=accountProvider.checkAccountStatus(postAuthReq.getUser_id());
+        if(checkAccountStatus==user_deactivated){
+            //비교시에 상수처리
+            return new BaseResponse<>(ACCOUNT_DEACTIVATED);
+        }
+        try{
+            PostAuthRes postAuthRes=accountProvider.accountAuth(postAuthReq);
+            return new BaseResponse<>(postAuthRes);
+
+        }catch(BaseException exception){
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
 
     /**
      * 유저 ID(이메일)변경 API
@@ -122,19 +160,19 @@ public class AccountController {
     @PatchMapping("/{userNum}/email")
     public BaseResponse<String> modifyUserId(@PathVariable("userNum") int userNum, @RequestBody PatchAccIdReq patchAccIdReq){
         try {
-            /*
-            //jwt에서 idx 추출.
-            int userNumByJwt = jwtService.getUserIdx();
+            /* 이 부분이 전부 interceptor로 대체되었다.
+            jwt에서 idx 추출.
+            int userNumByJwt = jwtService.getUserNum();
             //userIdx와 접근한 유저가 같은지 확인
             if(userNum != userNumByJwt){
                 return new BaseResponse<>(INVALID_USER_JWT);
-            }*/
-
+            }
+            jwt로 대체
             int userNumFound = accountProvider.checkUserNum(userNum);
             if(userNumFound==0){
                 return new BaseResponse<>(ACCOUNT_DOESNT_EXISTS);
             }
-
+            */
             accountService.modifyAccountId(patchAccIdReq);
 
             String result = "";
@@ -154,19 +192,6 @@ public class AccountController {
     @PatchMapping("/{userNum}/password")
     public BaseResponse<String> modifyUserPW(@PathVariable("userNum") int userNum, @RequestBody PatchAccPWReq patchAccPWReq){
         try {
-            /*
-            //jwt에서 idx 추출.
-            int userNumByJwt = jwtService.getUserIdx();
-            //userIdx와 접근한 유저가 같은지 확인
-            if(userNum != userNumByJwt){
-                return new BaseResponse<>(INVALID_USER_JWT);
-            }*/
-
-            int userNumFound = accountProvider.checkUserNum(userNum);
-            if(userNumFound==0){
-                return new BaseResponse<>(ACCOUNT_DOESNT_EXISTS);
-            }
-
             accountService.modifyAccountPW(patchAccPWReq);
 
             String result = "";
@@ -185,19 +210,6 @@ public class AccountController {
     @PatchMapping("/{userNum}/phone")
     public BaseResponse<String> modifyUserPhone(@PathVariable("userNum") int userNum, @RequestBody PatchAccPhoneReq patchAccPhoneReq){
         try {
-            /*
-            //jwt에서 idx 추출.
-            int userNumByJwt = jwtService.getUserIdx();
-            //userIdx와 접근한 유저가 같은지 확인
-            if(userNum != userNumByJwt){
-                return new BaseResponse<>(INVALID_USER_JWT);
-            }*/
-
-            int userNumFound = accountProvider.checkUserNum(userNum);
-            if(userNumFound==0){
-                return new BaseResponse<>(ACCOUNT_DOESNT_EXISTS);
-            }
-
             accountService.modifyAccountPhone(patchAccPhoneReq);
 
             String result = "";
@@ -216,19 +228,6 @@ public class AccountController {
     @PatchMapping("/{userNum}/membership")
     public BaseResponse<String> modifyUserMembership(@PathVariable("userNum") int userNum, @RequestBody PatchAccMemReq patchAccMemReq){
         try {
-            /*
-            //jwt에서 idx 추출.
-            int userNumByJwt = jwtService.getUserIdx();
-            //userIdx와 접근한 유저가 같은지 확인
-            if(userNum != userNumByJwt){
-                return new BaseResponse<>(INVALID_USER_JWT);
-            }*/
-
-            int userNumFound = accountProvider.checkUserNum(userNum);
-            if(userNumFound==0){
-                return new BaseResponse<>(ACCOUNT_DOESNT_EXISTS);
-            }
-
             accountService.modifyAccountMembership(patchAccMemReq);
 
             String result = "";
@@ -247,21 +246,7 @@ public class AccountController {
     @PatchMapping("/{userNum}/payment")
     public BaseResponse<String> modifyUserPayment(@PathVariable("userNum") int userNum, @RequestBody PatchAccPayReq patchAccPayReq){
         try {
-            /*
-            //jwt에서 idx 추출.
-            int userNumByJwt = jwtService.getUserIdx();
-            //userIdx와 접근한 유저가 같은지 확인
-            if(userNum != userNumByJwt){
-                return new BaseResponse<>(INVALID_USER_JWT);
-            }*/
-
-            int userNumFound = accountProvider.checkUserNum(userNum);
-            if(userNumFound==0){
-                return new BaseResponse<>(ACCOUNT_DOESNT_EXISTS);
-            }
-
             accountService.modifyAccountPayment(patchAccPayReq);
-
             String result = "";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {

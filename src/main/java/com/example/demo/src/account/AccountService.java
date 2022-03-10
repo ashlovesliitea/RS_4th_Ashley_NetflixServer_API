@@ -2,8 +2,9 @@ package com.example.demo.src.account;
 
 
 import com.example.demo.config.BaseException;
-import com.example.demo.src.account.model.*;
-import com.example.demo.src.userExample.model.PostUserRes;
+import com.example.demo.src.account.model.request.*;
+import com.example.demo.src.account.model.response.PostAccRes;
+import com.example.demo.src.account.model.response.PostProfileRes;
 import com.example.demo.utils.JwtService;
 import com.example.demo.utils.SHA256;
 import org.slf4j.Logger;

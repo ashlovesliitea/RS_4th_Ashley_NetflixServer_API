@@ -1,12 +1,15 @@
 package com.example.demo.src.video;
 
-import com.example.demo.src.video.model.*;
+import com.example.demo.src.video.model.entity.Episode;
+import com.example.demo.src.video.model.entity.Video;
+import com.example.demo.src.video.model.response.GetMoviesRes;
+import com.example.demo.src.video.model.response.GetSeriesRes;
+import com.example.demo.src.video.model.response.GetVideoRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
