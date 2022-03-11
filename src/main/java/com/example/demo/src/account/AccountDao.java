@@ -125,6 +125,15 @@ public class AccountDao {
 
     }
 
+    public int getUserNum(String userId){
+        String checkIdQuery = "select user_num from User where user_id = ?";
+        String checkIdParams = userId;
+        return this.jdbcTemplate.queryForObject(checkIdQuery,
+                int.class,
+                checkIdParams);
+
+    }
+
 
     public int checkUserNum(int userNum){
         String checkNumQuery = "select exists(select user_num from User where user_num = ?)";

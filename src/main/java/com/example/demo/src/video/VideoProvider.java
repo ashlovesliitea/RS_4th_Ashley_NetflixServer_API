@@ -23,7 +23,7 @@ public class VideoProvider {
         this.videoDao = videoDao;
     }
 
-    public List<GetVideoRes>getVideoList() throws BaseException{
+    public List<GetVideoRes>getVideoList() throws BaseException{ //DatabaseException을 따로 만들어서 처리할 것.
         try{
             List<GetVideoRes> acc=videoDao.getVideoList();
             return acc;

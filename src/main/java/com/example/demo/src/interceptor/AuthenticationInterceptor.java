@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AuthenticationInterceptor implements HandlerInterceptor {
     private final JwtService jwtService;
     private final ObjectMapper objectMapper; //자바 객체를 json으로 serialization
@@ -26,6 +26,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception {
         boolean check=checkAnnotation(handler, NoAuth.class);
         if(check) return true;
+        System.out.println("인터셉트중..");
 
         try{
             int userNumByJwt = jwtService.getUserNum();

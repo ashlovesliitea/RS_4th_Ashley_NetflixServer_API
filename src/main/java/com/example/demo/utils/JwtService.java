@@ -24,11 +24,12 @@ public class JwtService {
     @param userNum
     @return String
      */
-    public String createJwt(int userNum){
+    public String createJwt(int userNum,String userId){
         Date now = new Date();
         return Jwts.builder()
                 .setHeaderParam("type","jwt")
                 .claim("userNum",userNum)
+                .claim("userId",userId)
                 .setIssuedAt(now)
                 .setExpiration(new Date(System.currentTimeMillis()+1*(1000*60*60*24*365))) //발급날짜 계산
                 .signWith(SignatureAlgorithm.HS256, Secret.JWT_SECRET_KEY) //signature 부분
@@ -58,16 +59,38 @@ public class JwtService {
 
         // 2. JWT parsing
         Jws<Claims> claims;
-        try{
+
             claims = Jwts.parser()
                     .setSigningKey(Secret.JWT_SECRET_KEY)
                     .parseClaimsJws(accessToken);
-        } catch (Exception ignored) {
-            throw new BaseException(INVALID_JWT);
-        }
+
 
         // 3. userNum 추출
         return claims.getBody().get("userNum",Integer.class);
+    }
+
+    /*
+   JWT에서 userId 추출
+   @return String
+   @throws BaseException
+    */
+    public String getUserId() throws BaseException{
+        //1. JWT 추출
+        String accessToken = getJwt();
+        if(accessToken == null || accessToken.length() == 0){
+            throw new BaseException(EMPTY_JWT);
+        }
+
+        // 2. JWT parsing
+        Jws<Claims> claims;
+
+        claims = Jwts.parser()
+                .setSigningKey(Secret.JWT_SECRET_KEY)
+                .parseClaimsJws(accessToken);
+
+
+        // 3. userNum 추출
+        return claims.getBody().get("userId",String.class);
     }
 
 }

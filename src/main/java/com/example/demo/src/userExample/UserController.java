@@ -1,5 +1,7 @@
 package com.example.demo.src.userExample;
 
+import com.example.demo.src.annotation.NoAuth;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.demo.config.BaseException;
@@ -44,10 +46,11 @@ public class UserController {
      * @return BaseResponse<List<GetUserRes>>
      */
     //Query String
+    @NoAuth
     @ResponseBody
     @GetMapping("") // (GET) 127.0.0.1:9000/app/users
-    public BaseResponse<List<GetUserRes>> getUsers(@RequestParam(required = false) String Email) {
-        try{
+    public BaseResponse<List<GetUserRes>> getUsers(@RequestParam(required = false) String Email) throws BaseException{
+
             if(Email == null){
                 List<GetUserRes> getUsersRes = userProvider.getUsers();
                 return new BaseResponse<>(getUsersRes);
@@ -55,9 +58,7 @@ public class UserController {
             // Get Users
             List<GetUserRes> getUsersRes = userProvider.getUsersByEmail(Email);
             return new BaseResponse<>(getUsersRes);
-        } catch(BaseException exception){
-            return new BaseResponse<>((exception.getStatus()));
-        }
+
     }
 
     /**
@@ -66,16 +67,14 @@ public class UserController {
      * @return BaseResponse<GetUserRes>
      */
     // Path-variable
+    @NoAuth
     @ResponseBody
     @GetMapping("/{userIdx}") // (GET) 127.0.0.1:9000/app/users/:userIdx
-    public BaseResponse<GetUserRes> getUser(@PathVariable("userIdx") int userIdx) {
+    public BaseResponse<GetUserRes> getUser(@PathVariable("userIdx") int userIdx) throws BaseException {
         // Get Users
-        try{
+
             GetUserRes getUserRes = userProvider.getUser(userIdx);
             return new BaseResponse<>(getUserRes);
-        } catch(BaseException exception){
-            return new BaseResponse<>((exception.getStatus()));
-        }
 
     }
 
@@ -87,7 +86,7 @@ public class UserController {
     // Body
     @ResponseBody
     @PostMapping("")
-    public BaseResponse<PostUserRes> createUser(@RequestBody PostUserReq postUserReq) {
+    public BaseResponse<PostUserRes> createUser(@RequestBody PostUserReq postUserReq) throws BaseException{
         // TODO: email 관련한 짧은 validation 예시입니다. 그 외 더 부가적으로 추가해주세요!
         if(postUserReq.getEmail() == null){
             return new BaseResponse<>(POST_USERS_EMPTY_EMAIL);
@@ -96,12 +95,10 @@ public class UserController {
         if(!isRegexEmail(postUserReq.getEmail())){
             return new BaseResponse<>(POST_USERS_INVALID_EMAIL);
         }
-        try{
+
             PostUserRes postUserRes = userService.createUser(postUserReq);
             return new BaseResponse<>(postUserRes);
-        } catch(BaseException exception){
-            return new BaseResponse<>((exception.getStatus()));
-        }
+
     }
     /**
      * 로그인 API
@@ -110,15 +107,12 @@ public class UserController {
      */
     @ResponseBody
     @PostMapping("/logIn")
-    public BaseResponse<PostLoginRes> logIn(@RequestBody PostLoginReq postLoginReq){
-        try{
+    public BaseResponse<PostLoginRes> logIn(@RequestBody PostLoginReq postLoginReq) throws BaseException{
+
             // TODO: 로그인 값들에 대한 형식적인 validatin 처리해주셔야합니다!
             // TODO: 유저의 status ex) 비활성화된 유저, 탈퇴한 유저 등을 관리해주고 있다면 해당 부분에 대한 validation 처리도 해주셔야합니다.
             PostLoginRes postLoginRes = userProvider.logIn(postLoginReq);
             return new BaseResponse<>(postLoginRes);
-        } catch (BaseException exception){
-            return new BaseResponse<>(exception.getStatus());
-        }
     }
 
     /**
@@ -128,8 +122,8 @@ public class UserController {
      */
     @ResponseBody
     @PatchMapping("/{userIdx}")
-    public BaseResponse<String> modifyUserName(@PathVariable("userIdx") int userIdx, @RequestBody User user){
-        try {
+    public BaseResponse<String> modifyUserName(@PathVariable("userIdx") int userIdx, @RequestBody User user)throws BaseException{
+
             //jwt에서 idx 추출.
             int userIdxByJwt = jwtService.getUserNum();
             //userIdx와 접근한 유저가 같은지 확인
@@ -141,10 +135,8 @@ public class UserController {
             userService.modifyUserName(patchUserReq);
 
             String result = "";
-        return new BaseResponse<>(result);
-        } catch (BaseException exception) {
-            return new BaseResponse<>((exception.getStatus()));
-        }
+            return new BaseResponse<>(result);
+
     }
 
 

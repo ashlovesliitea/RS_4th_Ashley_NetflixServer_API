@@ -1,3 +1,5 @@
+com/example/demo/RestTemplateConfig.java
+ com.example.demo.RestTemplateConfig
 com/example/demo/src/setting/model/response/GetProfileWatchedRes.java
  com.example.demo.src.setting.model.response.GetProfileWatchedRes
 com/example/demo/src/userExample/model/GetUserRes.java
@@ -10,12 +12,19 @@ com/example/demo/src/setting/model/entity/Profile.java
  com.example.demo.src.setting.model.entity.Profile
 com/example/demo/config/Constant.java
  com.example.demo.config.Constant
+ com.example.demo.config.Constant$SocialLoginType
 com/example/demo/src/account/model/response/PostProfileRes.java
  com.example.demo.src.account.model.response.PostProfileRes
+com/example/demo/src/account/model/entity/TokenResponse.java
+ com.example.demo.src.account.model.entity.TokenResponse
 com/example/demo/src/userExample/UserProvider.java
  com.example.demo.src.userExample.UserProvider
+com/example/demo/src/account/social/SocialLoginTypeConverter.java
+ com.example.demo.src.account.social.SocialLoginTypeConverter
 com/example/demo/utils/ValidationRegex.java
  com.example.demo.utils.ValidationRegex
+com/example/demo/src/account/model/entity/GoogleUser.java
+ com.example.demo.src.account.model.entity.GoogleUser
 com/example/demo/src/userExample/UserController.java
  com.example.demo.src.userExample.UserController
 com/example/demo/src/userExample/UserDao.java
@@ -28,6 +37,8 @@ com/example/demo/src/userExample/model/PostUserRes.java
  com.example.demo.src.userExample.model.PostUserRes
 com/example/demo/src/video/model/response/GetVideoRes.java
  com.example.demo.src.video.model.response.GetVideoRes
+com/example/demo/src/account/social/GoogleOauth.java
+ com.example.demo.src.account.social.GoogleOauth
 com/example/demo/src/setting/model/request/PatchProfileRatedReq.java
  com.example.demo.src.setting.model.request.PatchProfileRatedReq
 com/example/demo/src/setting/model/request/PatchProfileCommReq.java
@@ -44,6 +55,8 @@ com/example/demo/src/account/model/response/PostAccRes.java
  com.example.demo.src.account.model.response.PostAccRes
 com/example/demo/src/setting/model/response/GetProfileRatedRes.java
  com.example.demo.src.setting.model.response.GetProfileRatedRes
+com/example/demo/src/account/model/entity/GoogleOAuthToken.java
+ com.example.demo.src.account.model.entity.GoogleOAuthToken
 com/example/demo/config/BaseResponse.java
  com.example.demo.config.BaseResponse
 com/example/demo/src/video/VideoDao.java
@@ -64,8 +77,10 @@ com/example/demo/utils/SHA256.java
  com.example.demo.utils.SHA256
 com/example/demo/src/video/model/entity/Video.java
  com.example.demo.src.video.model.entity.Video
-com/example/demo/src/video/model/response/GetMoviesRes.java
- com.example.demo.src.video.model.response.GetMoviesRes
+com/example/demo/src/account/social/SocialOauth.java
+ com.example.demo.src.account.social.SocialOauth
+com/example/demo/src/interceptor/AuthenticationInterceptor.java
+ com.example.demo.src.interceptor.AuthenticationInterceptor
 com/example/demo/src/account/model/response/PostAuthRes.java
  com.example.demo.src.account.model.response.PostAuthRes
 com/example/demo/src/account/model/request/PatchAccMemReq.java
@@ -76,6 +91,8 @@ com/example/demo/src/account/AccountDao.java
  com.example.demo.src.account.AccountDao
 com/example/demo/src/userExample/model/PostUserReq.java
  com.example.demo.src.userExample.model.PostUserReq
+com/example/demo/ExceptionAdvice.java
+ com.example.demo.ExceptionAdvice
 com/example/demo/src/account/model/request/PatchAccPhoneReq.java
  com.example.demo.src.account.model.request.PatchAccPhoneReq
 com/example/demo/src/setting/model/request/PostProfileWatchedReq.java
@@ -98,8 +115,8 @@ com/example/demo/src/account/AccountProvider.java
  com.example.demo.src.account.AccountProvider
 com/example/demo/src/account/model/entity/Profile.java
  com.example.demo.src.account.model.entity.Profile
-com/example/demo/src/account/AccountService.java
- com.example.demo.src.account.AccountService
+com/example/demo/src/video/model/response/GetMoviesRes.java
+ com.example.demo.src.video.model.response.GetMoviesRes
 com/example/demo/src/account/model/request/PostProfileReq.java
  com.example.demo.src.account.model.request.PostProfileReq
 com/example/demo/src/account/model/request/PatchAccIdReq.java
@@ -112,8 +129,8 @@ com/example/demo/src/userExample/UserService.java
  com.example.demo.src.userExample.UserService
 com/example/demo/src/setting/model/request/PostProfileRatedReq.java
  com.example.demo.src.setting.model.request.PostProfileRatedReq
-com/example/demo/src/account/AccountController.java
- com.example.demo.src.account.AccountController
+com/example/demo/src/setting/model/request/PatchProfileLangReq.java
+ com.example.demo.src.setting.model.request.PatchProfileLangReq
 com/example/demo/src/setting/model/request/PatchProfileRestrictReq.java
  com.example.demo.src.setting.model.request.PatchProfileRestrictReq
 com/example/demo/src/account/model/request/PostAccReq.java
@@ -128,11 +145,16 @@ com/example/demo/src/video/model/response/GetSeriesRes.java
  com.example.demo.src.video.model.response.GetSeriesRes
 com/example/demo/utils/JwtService.java
  com.example.demo.utils.JwtService
-com/example/demo/src/video/VideoController.java
- com.example.demo.src.video.VideoController
-com/example/demo/src/setting/model/request/PatchProfileLangReq.java
- com.example.demo.src.setting.model.request.PatchProfileLangReq
-com/example/demo/src/interceptor/AuthenticationInterceptor.java
- com.example.demo.src.interceptor.AuthenticationInterceptor
 com/example/demo/WebConfig.java
  com.example.demo.WebConfig
+com/example/demo/src/video/VideoController.java
+ com.example.demo.src.video.VideoController
+com/example/demo/src/account/AccountService.java
+ com.example.demo.src.account.AccountService
+com/example/demo/src/account/model/response/GetSocialOAuthRes.java
+ com.example.demo.src.account.model.response.GetSocialOAuthRes
+com/example/demo/src/account/AccountController.java
+ com.example.demo.src.account.AccountController
+com/example/demo/src/account/social/OAuthService.java
+ com.example.demo.src.account.social.OAuthService
+ com.example.demo.src.account.social.OAuthService$1
