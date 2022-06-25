@@ -29,3 +29,4 @@
 
 ## 4. 개발일지
 - 개발 과정을 담은 일지는 아래 링크에서 확인하실 수 있습니다.
+- https://pinnate-goldfish-74c.notion.site/4a7cd20d703f47d18b27d55c2221ebd1?v=6ef93eab281b4d61b1f807faf18a0c91
